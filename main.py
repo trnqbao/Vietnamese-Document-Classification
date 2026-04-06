@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from gensim.models.doc2vec import Doc2Vec
 from tensorflow.keras.models import load_model
-from utils import load_stopwords, classify
+from utils import load_stopwords, classify_doc
 
 app = FastAPI()
 
@@ -15,5 +15,5 @@ class Request(BaseModel):
 
 @app.post("/classify")
 def classify(req: Request):
-    label = classify(req.text, stopwords, doc2vec, model)
+    label = classify_doc(req.text, stopwords, doc2vec, model)
     return {"label": label}

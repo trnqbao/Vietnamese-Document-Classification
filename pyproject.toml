@@ -1,0 +1,14 @@
+[project]
+name = "document-classification"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.135.3",
+    "gensim>=4.4.0",
+    "numpy>=2.4.4",
+    "pyvi>=0.1.1",
+    "tensorflow>=2.21.0",
+    "uvicorn>=0.44.0",
+]

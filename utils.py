@@ -14,7 +14,7 @@ def preprocess(doc, stopwords):
     tokens = [token for token in tokens if token not in stopwords]
     return " ".join(tokens)
 
-def classify(doc, stopwords, doc2vec, model):
+def classify_doc(doc, stopwords, doc2vec, model):
     doc = preprocess(doc, stopwords)
     vector = doc2vec.infer_vector(doc.split())
     vector = np.array(vector).reshape(1, -1)
