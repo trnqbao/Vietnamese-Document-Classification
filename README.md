@@ -85,7 +85,9 @@ POST /classify
 **Response:**
 ```json
 {
-  "label": "Kinh Doanh"
+  "index": 1,
+  "label": "Kinh Doanh",
+  "confidence": 0.8131
 }
 ```
 
