@@ -102,16 +102,11 @@ http://127.0.0.1:8000/docs
 
 ```
 vietnamese-document-classification/
-├── datasets/
-├── models/
-│   ├── doc2vec.model
-│   ├── vi_doc_classifier.keras
-│   └── ...
-├── assets/
-│   ├── label_distribution.png
-│   └── training_history.png
-│   └── ...
+├── assets/...
+├── datasets/...
+├── models/...
 ├── Training Pipeline.ipynb
+├── schemas.py
 ├── utils.py
 ├── main.py
 └── README.md
