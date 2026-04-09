@@ -1,6 +1,8 @@
 # Vietnamese Document Classification
 
-A deep learning-based system for classifying Vietnamese documents into 10 categories, powered by **Doc2Vec** embeddings and a **Neural Network** classifier, served via a **FastAPI** REST API.
+A deep learning-based system for classifying Vietnamese documents into 10 categories, powered by **Doc2Vec** embeddings and a **Neural Network** classifier, served via a **FastAPI** REST API — deployed on Hugging Face Spaces with a Chrome Extension client.
+
+**Live API:** https://trnqbao-vi-doc-classifier.hf.space/docs
 
 ---
 
@@ -8,18 +10,18 @@ A deep learning-based system for classifying Vietnamese documents into 10 catego
 
 The model classifies documents into the following 10 labels:
 
-| Label |
-|---|
-| Chính Trị |
-| Đời Sống |
-| Khoa Học |
-| Kinh Doanh |
-| Pháp Luật |
-| Sức Khỏe |
-| Thế Giới |
-| Thể Thao |
-| Văn Hóa |
-| Công Nghệ |
+| Label | Description |
+|---|---|
+| Chính Trị | Politics |
+| Đời Sống | Lifestyle |
+| Khoa Học | Science |
+| Kinh Doanh | Business |
+| Pháp Luật | Law |
+| Sức Khỏe | Health |
+| Thế Giới | World News |
+| Thể Thao | Sports |
+| Văn Hóa | Culture |
+| Công Nghệ | Technology |
 
 ### Dataset Distribution
 
@@ -57,16 +59,9 @@ Raw Text → Preprocessing → Doc2Vec Embedding → Neural Network → Label
 
 ## API Usage
 
-### Requirements
-
-```bash
-uv add fastapi uvicorn gensim tensorflow numpy pyvi
+The API is deployed on Hugging Face Spaces and available at:
 ```
-
-### Run the server
-
-```bash
-uv run uvicorn main:app --reload
+https://trnqbao-vi-doc-classifier.hf.space
 ```
 
 ### Endpoint
@@ -78,14 +73,14 @@ POST /classify
 **Request body:**
 ```json
 {
-  "text": "Lãi suất vay mượn giữa các ngân hàng nhiều phiên tăng mạnh và được dự báo khó sớm quay về mức thấp như trước. Từ đầu năm đến nay, lãi suất trên thị trường liên ngân hàng biến động mạnh. Phiên 4/2, lãi suất qua đêm vọt lên 17%, mức cao nhất trong khoảng một thập kỷ. Trong tháng 3, thị trường ghi nhận nhiều phiên lãi suất vượt 10% trước khi hạ nhiệt. Đến đầu tháng 4, lãi suất qua đêm vẫn duy trì quanh 9%."
+  "text": "Lãi suất vay mượn giữa các ngân hàng nhiều phiên tăng mạnh và được dự báo khó sớm quay về mức thấp như trước."
 }
 ```
 
 **Response:**
 ```json
 {
-  "index": 1,
+  "index": 3,
   "label": "Kinh Doanh",
   "confidence": 0.8131
 }
@@ -93,10 +88,48 @@ POST /classify
 
 ### Interactive Docs
 
-FastAPI provides a built-in Swagger UI at:
+Swagger UI is available at:
 ```
-http://127.0.0.1:8000/docs
+https://trnqbao-vi-doc-classifier.hf.space/docs
 ```
+
+---
+
+## Chrome Extension
+
+A lightweight Chrome/Edge extension that classifies selected text directly from any webpage.
+
+### Installation
+
+1. Clone this repository.
+2. Open `edge://extensions/` (or `chrome://extensions/`).
+3. Enable **Developer mode**.
+4. Click **Load unpacked** → select the `chrome-extension/` folder.
+
+### Usage
+
+1. Select any Vietnamese text on a webpage.
+2. Click the extension icon.
+3. The selected text is auto-filled — click **Classify**.
+4. View the predicted label and confidence score.
+
+---
+
+## Run Locally
+
+### Requirements
+
+```bash
+uv add fastapi uvicorn gensim tensorflow numpy pyvi
+```
+
+### Start the server
+
+```bash
+uv run uvicorn main:app --reload
+```
+
+Swagger UI available at `http://127.0.0.1:8000/docs`.
 
 ---
 
@@ -104,9 +137,15 @@ http://127.0.0.1:8000/docs
 
 ```
 vietnamese-document-classification/
-├── assets/...
-├── datasets/...
-├── models/...
+├── assets/
+├── datasets/
+├── models/
+├── chrome-extension/
+│   ├── manifest.json
+│   ├── popup.html
+│   ├── popup.js
+│   ├── background.js
+│   └── content.js
 ├── Training Pipeline.ipynb
 ├── schemas.py
 ├── utils.py
