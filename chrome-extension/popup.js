@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8000/classify";
+const API_URL = "https://trnqbao-vi-doc-classifier.hf.space/classify";
 
 const btn = document.getElementById("classifyBtn");
 const inputText = document.getElementById("inputText");
