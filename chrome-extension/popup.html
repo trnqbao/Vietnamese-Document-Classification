@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vietnamese Document Classifier</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      width: 320px;
+      padding: 16px;
+      background: #ffffff;
+      color: #1a1a1a;
+    }
+
+    h1 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      font-size: 13px;
+      border: 0.5px solid #d0d0d0;
+      border-radius: 8px;
+      resize: vertical;
+      outline: none;
+      font-family: inherit;
+      color: #1a1a1a;
+      background: #fafafa;
+    }
+
+    textarea:focus {
+      border-color: #888;
+      background: #fff;
+    }
+
+    button {
+      margin-top: 10px;
+      width: 100%;
+      padding: 9px;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover { background: #333; }
+    button:disabled { background: #aaa; cursor: not-allowed; }
+
+    #result {
+      margin-top: 14px;
+      padding: 12px;
+      border: 0.5px solid #e0e0e0;
+      border-radius: 8px;
+      background: #f8f8f8;
+      display: none;
+    }
+
+    .label-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .label {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .badge {
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 99px;
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-weight: 500;
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 6px;
+      background: #e0e0e0;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: #1a1a1a;
+      transition: width 0.4s ease;
+    }
+
+    .confidence-label {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    #error {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #c0392b;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Vietnamese Document Classifier</h1>
+
+  <textarea id="inputText" placeholder="Paste or type Vietnamese text here..."></textarea>
+  <button id="classifyBtn">Classify</button>
+
+  <div id="error"></div>
+
+  <div id="result">
+    <div class="label-row">
+      <span class="label" id="labelText">—</span>
+      <span class="badge" id="confidenceBadge">—</span>
+    </div>
+    <div class="bar-track">
+      <div class="bar-fill" id="barFill" style="width: 0%"></div>
+    </div>
+    <div class="confidence-label" id="confidenceLabel">Confidence</div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
